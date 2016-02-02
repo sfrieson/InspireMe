@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="InspireMe">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/services/apiServices.js" charset="utf-8"></script>
+    <script src="js/controllers/artworkController.js" charset="utf-8"></script>
+    <script src="js/app.js" charset="utf-8"></script>
+</head>
+<body ng-controller="ArtworkController">
+    <header>
+        <h1 id="logo">inspire.me</h1>
+        <h2>Dribbble</h2>
+        <div class="piece" ng-repeat="result in dresults">
+            <img ng-src="{{result.images.teaser}}" alt="">
+            <h1>{{result.title}}</h1>
+            by {{result.user.name}}
+        </div>
+        <h2>Behance</h2>
+        <div class="piece" ng-repeat="result in bresults">
+            <img ng-src="{{result.covers['202']}}" alt="">
+            <h1>{{result.name}}</h1>
+            by {{result.owners[0].display_name}}
+        </div>
+    </header>
+
+</body>
+</html>
