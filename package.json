@@ -1,0 +1,19 @@
+{
+  "name": "inspire_me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Steven Frieson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "kerberos": "0.0.18",
+    "mongoose": "^4.3.7",
+    "morgan": "^1.6.1"
+  }
+}
