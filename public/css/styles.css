@@ -1,0 +1,41 @@
+#header-container {
+    height: 100px;
+}
+header {
+    position: fixed;
+    top: 0;
+}
+#bricks {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+    column-gap: 1em;
+}
+.piece {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0 0 1em;
+    width: 100%;
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.info {
+    padding: 10px;
+}
+
+.dribbble {
+    border-bottom: 10px solid rgb(236, 73, 137);
+}
+.behance {
+        border-bottom: 10px solid rgb(62, 97, 173);
+}
+.piece img {
+    width: 100%;
+}
+.time {
+    display: none;
+}

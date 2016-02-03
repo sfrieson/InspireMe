@@ -10,31 +10,27 @@
     <script src="js/app.js" charset="utf-8"></script>
 </head>
 <body ng-controller="ArtworkController">
+    <div id="header-container">
     <header>
         <h1 id="logo">inspire.me</h1>
-        <h2>Results</h2>
-        <div class="piece" ng-repeat="result in dresults">
-            <img ng-src="{{result.img.small}}" alt="{{result.title}}">
-            <h1>{{result.title}}</h1><a href="{{result.url}}">View Original</a>
-            by <a href="{{result.user_url}}">{{result.user}}</a><br />
-            {{result.desc}}
-        </div>
-
-        <!-- parsed.id
-        parsed.title
-        parsed.user
-        parsed.user_url
-        parsed.desc
-        parsed.img
-        parsed.time
-        parsed.url  -->
-
-
-
-
-
-
+        Dribbble: <input type="checkbox" name="Dribbble"> | Behance: <input type="checkbox" name="Behance">
     </header>
+    </div>
+    <h2>Results</h2>
+    <section id="bricks">
+        <div class="piece {{result.src}}" ng-repeat="result in results | orderBy: 'time'">
+            <a ng-href="{{result.url}}" target="_blank" >
+                <img ng-src="{{result.img}}" alt="{{result.title}}">
+            </a>
+            <div class="info">
+                <h1>{{result.title}}</h1>
+                by <a ng-href="{{result.user_url}}" target="_blank" >{{result.user}}</a><br />
+                {{result.desc}}
+                <div class="time">{{result.time}}</div>
+            </div>
+        </div>
+    </section>
+
 
 </body>
 </html>
