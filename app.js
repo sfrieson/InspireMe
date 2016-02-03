@@ -27,6 +27,9 @@ var favorites = require('./routers/favorites');
 app.get('/', function(req,res){
     res.sendFile(__dirname + "/views/index.html");
 });
+
+app.use('/api/favorites', favorites);
+
 app.get('/api/helper', function(req,res){
     var baseUrl, access;
     if(req.query.api === "Dribbble"){
@@ -36,7 +39,6 @@ app.get('/api/helper', function(req,res){
             res.send(body);
         });
     }
-
     if(req.query.api === "Behance"){
         baseUrl = "http://behance.net/v2/";
         access = "?api_key=" +  process.env.BEHANCEKEY;
@@ -44,9 +46,8 @@ app.get('/api/helper', function(req,res){
             res.send(body);
         });
     }
-
 });
-app.use('/api/favorites', favorites);
+
 
 
 // ========= Listening =========

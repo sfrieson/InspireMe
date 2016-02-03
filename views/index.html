@@ -12,18 +12,28 @@
 <body ng-controller="ArtworkController">
     <header>
         <h1 id="logo">inspire.me</h1>
-        <h2>Dribbble</h2>
+        <h2>Results</h2>
         <div class="piece" ng-repeat="result in dresults">
-            <img ng-src="{{result.images.teaser}}" alt="">
-            <h1>{{result.title}}</h1>
-            by {{result.user.name}}
+            <img ng-src="{{result.img.small}}" alt="{{result.title}}">
+            <h1>{{result.title}}</h1><a href="{{result.url}}">View Original</a>
+            by <a href="{{result.user_url}}">{{result.user}}</a><br />
+            {{result.desc}}
         </div>
-        <h2>Behance</h2>
-        <div class="piece" ng-repeat="result in bresults">
-            <img ng-src="{{result.covers['202']}}" alt="">
-            <h1>{{result.name}}</h1>
-            by {{result.owners[0].display_name}}
-        </div>
+
+        <!-- parsed.id
+        parsed.title
+        parsed.user
+        parsed.user_url
+        parsed.desc
+        parsed.img
+        parsed.time
+        parsed.url  -->
+
+
+
+
+
+
     </header>
 
 </body>
