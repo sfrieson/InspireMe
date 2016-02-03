@@ -13,12 +13,12 @@
     <div id="header-container">
     <header>
         <h1 id="logo">inspire.me</h1>
-        Dribbble: <input type="checkbox" name="Dribbble"> | Behance: <input type="checkbox" name="Behance">
+        Dribbble: <input type="checkbox" ng-model="shots"> | Behance: <input type="checkbox" name="Behance" ng-model="projects">
     </header>
     </div>
     <h2>Results</h2>
     <section id="bricks">
-        <div class="piece {{result.src}}" ng-repeat="result in results | orderBy: 'time'">
+        <div class="piece {{result.src}}" ng-repeat="result in results | filter: checkboxes | orderBy: 'time'">
             <a ng-href="{{result.url}}" target="_blank" >
                 <img ng-src="{{result.img}}" alt="{{result.title}}">
             </a>
@@ -26,7 +26,7 @@
                 <h1>{{result.title}}</h1>
                 by <a ng-href="{{result.user_url}}" target="_blank" >{{result.user}}</a><br />
                 {{result.desc}}
-                <div class="time">{{result.time}}</div>
+                <div class="">{{result.time}}</div>
             </div>
         </div>
     </section>
