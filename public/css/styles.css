@@ -107,13 +107,19 @@ header {
     background-image: url(http://vectorlogofree.com/wp-content/uploads/2014/06/48925-500px-logo-icon-vector-icon-vector-eps.png);
 }
 .box.inspired {
-    float: right;
     background-color: gray;
     background-image: url(/images/inspire-me-logo.svg);
 }
+.box.inspired.active {
+    background-color: white;
+    background-image: url(/images/inspire-me-logo.svg);
+}
+.piece .box.inspired {
+    float: right;
+}
+
 
 .inspire-add {
-    /*background: url(/images/inspire-me-logo.svg);*/
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -122,7 +128,6 @@ header {
     left: 0;
     z-index: 99;
     text-align: center;
-
 }
 
 @keyframes grow {
@@ -133,7 +138,7 @@ header {
 }
 
 .inspire-add img {
-    animation: grow 2s forwards;
+    animation: grow 1s forwards;
 
 }
 

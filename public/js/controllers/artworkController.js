@@ -10,7 +10,7 @@ ctrl.controller('ArtworkController',
     $scope.inspireWin = false;
 
     var getDribbbles = function(page){
-        if(fakeDribbble){
+        if(!fakeDribbble){
             $scope.results = $scope.results.concat( dribbbleResults(fakeDribbble) );
         } else {
             DribbbleFactory.get(page).then(function(response){
@@ -22,7 +22,7 @@ ctrl.controller('ArtworkController',
     };
 
     var getBehance = function(page){
-        if(fakeBehance){
+        if(!fakeBehance){
             $scope.results = $scope.results.concat( behanceResults(fakeBehance) );
         } else {
             BehanceFactory.get(page).then(function(response){
@@ -33,7 +33,7 @@ ctrl.controller('ArtworkController',
     };
 
     var get500px = function(page){
-        if(fake500px){
+        if(!fake500px){
             $scope.results = $scope.results.concat( pxResults(fake500px) );
         } else {
             PxFactory.get(page).then(function(response){
@@ -44,15 +44,7 @@ ctrl.controller('ArtworkController',
     };
 
     $scope.checkboxes = function (item) {
-        var source = item.src;
-        if($scope[item.src]) return true;
-        // if($scope.shots && $scope.projects && $scope){
-        //     return true;
-        // } else if($scope.shots && item.src === "dribbble") {
-        //     return true;
-        // } else if ($scope.projects && item.src === "behance"){
-        //     return true;
-        // }
+        if($scope[item.src]) return true; //if the scope variable with the same source name is true, then render
         return false;
     };
 
@@ -62,6 +54,16 @@ ctrl.controller('ArtworkController',
         FavoritesFactory.add($scope.results[index]).then(function(){});
         $scope.inspireWin = true;
         $timeout(function(){$scope.inspireWin = false;}, 2500);
+    };
+    $scope.savedResults = null; //placeholder to avoid another request after leaving favorites page
+    $scope.showFavorites = function(){
+        if (!$scope.savedResults) {
+            $scope.savedResults = $scope.results;
+            FavoritesFactory.get().then(function(response){$scope.results = response.data.favorites; console.log(response);});
+        } else {
+            $scope.results = $scope.savedResults; //restore results
+            $scope.savedResults = null;
+        }
     };
 
     var pageNumber = 1;
@@ -93,7 +95,7 @@ function dribbbleResults(response){
             parsed.desc = parsed.desc.replace(/<[^>]*>/g, "");
         }
         parsed.img = current.images.normal;
-        parsed.time = (new Date(current.created_at)).getTime() / 1000;
+        parsed.time = (new Date(current.created_at)).getTime() ;
         parsed.url = current.html_url;
         parsed.src = "dribbble";
 
@@ -121,7 +123,7 @@ function behanceResults(response){
         }
         parsed.desc = current.fields.join(" | ");
         parsed.img = current.covers['404']; //not an error. 404 is file size.
-        parsed.time = current.published_on;
+        parsed.time = current.published_on * 1000;
         parsed.url = current.url;
         parsed.src = "behance";
 
@@ -147,8 +149,8 @@ function pxResults(response){
             parsed.desc = parsed.desc.replace(/<[^>]*>/g, "");
         }
         parsed.img = current.image_url;
-        parsed.time = (new Date(current.created_at)).getTime() / 1000;
-        parsed.url = current.url;
+        parsed.time = (new Date(current.created_at)).getTime();
+        parsed.url = "https://500px.com" + current.url;
         parsed.src = "px";
 
         data[i] = parsed;

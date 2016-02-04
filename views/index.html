@@ -13,17 +13,23 @@
 </head>
 <body ng-controller="ArtworkController">
     <header>
-        <h1 id="logo">inspire.me</h1>
-
-    </header>
-    <div id="filter-container">
-        Filters:
-        <div class="checks">
-            <div class="box dribbble" ng-class="{inactive: !dribbble}" ng-click="dribbble = !dribbble"></div>
-            <div class="box behance" ng-class="{inactive: !behance}" ng-click="behance = !behance"></div>
-            <div class="box px" ng-class="{inactive: !px}" ng-click="px = !px"></div>
+        <h1  id="logo">
+            inspire.me
+        </h1>
+        <div id="filter-container">
+            <div>
+            Filters:
+                <div class="checks">
+                    <div class="box dribbble" ng-class="{inactive: !dribbble}" ng-click="dribbble = !dribbble"></div>
+                    <div class="box behance" ng-class="{inactive: !behance}" ng-click="behance = !behance"></div>
+                    <div class="box px" ng-class="{inactive: !px}" ng-click="px = !px"></div>
+                    <div class="box inspired" ng-class="{active: savedResults}" ng-click="showFavorites()"></div>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
+
+
     <section id="bricks">
         <div class="piece {{result.src}}" ng-repeat="result in results | filter: checkboxes | orderBy: 'time'">
             <a ng-href="{{result.url}}" target="_blank" >
@@ -40,6 +46,8 @@
         </div>
     </section>
     <div class="button" ng-click="apiCalls()">Load More</div>
+
+    <!-- Animation overlay -->
     <div class="inspire-add" ng-show="inspireWin"><img src="/images/inspire-me-logo.svg" alt=""></div>
 
 </body>

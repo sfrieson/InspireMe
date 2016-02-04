@@ -43,6 +43,9 @@ api.factory('PxFactory', ['$http', function($http){
 
 api.factory('FavoritesFactory', ['$http', function($http){
     var apiInterface = {};
+    apiInterface.get = function () {
+        return $http.get('/api/favorites');
+    };
     apiInterface.add = function (data) {
         return $http.post('/api/favorites', {favorite: data});
     };
