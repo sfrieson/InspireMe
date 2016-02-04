@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="js/services/apiServices.js" charset="utf-8"></script>
     <script src="js/controllers/artworkController.js" charset="utf-8"></script>
     <script src="js/app.js" charset="utf-8"></script>
+
 </head>
 <body ng-controller="ArtworkController">
-    <div id="header-container">
     <header>
         <h1 id="logo">inspire.me</h1>
-        Dribbble: <input type="checkbox" ng-model="shots"> | Behance: <input type="checkbox" name="Behance" ng-model="projects">
+
     </header>
+    <div id="filter-container">
+        Filters:
+        <div class="checks">
+            <div class="box dribbble" ng-class="{inactive: !dribbble}" ng-click="dribbble = !dribbble"></div>
+            <div class="box behance" ng-class="{inactive: !behance}" ng-click="behance = !behance"></div>
+            <div class="box px" ng-class="{inactive: !px}" ng-click="px = !px"></div>
+        </div>
     </div>
-    <h2>Results</h2>
     <section id="bricks">
         <div class="piece {{result.src}}" ng-repeat="result in results | filter: checkboxes | orderBy: 'time'">
             <a ng-href="{{result.url}}" target="_blank" >
                 <img ng-src="{{result.img}}" alt="{{result.title}}">
             </a>
             <div class="info">
+                <div class="box inspired"></div>
                 <h1>{{result.title}}</h1>
                 by <a ng-href="{{result.user_url}}" target="_blank" >{{result.user}}</a><br />
                 {{result.desc}}
                 <div class="">{{result.time}}</div>
+
             </div>
         </div>
     </section>

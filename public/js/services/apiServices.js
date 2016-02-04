@@ -2,29 +2,41 @@ var api = angular.module('ApiServices', []);
 
 api.factory('DribbbleFactory', ['$http', function($http){
     var apiInterface = {};
-    // var baseUrl = "https://api.dribbble.com/v1/";
 
     apiInterface.get = function () {
-        return $http.get('/api/helper?api=Dribbble');
+        return $http.get('/api/dribbble');
     };
 
-    apiInterface.search = function(params) {
-        return $http.get(baseUrl + params + access);
-    };
+    // apiInterface.search = function(params) {
+    //     return $http.get(baseUrl + params + access);
+    // };
     return apiInterface;
 }]);
 
 api.factory('BehanceFactory', ['$http', function($http){
     var apiInterface = {};
-    // var baseUrl = "http://behance.net/v2/projects/";
 
     apiInterface.get = function () {
-        return $http.get('/api/helper?api=Behance');
+        return $http.get('/api/behance');
     };
 
-    apiInterface.search = function(params) {
-        return $http.get(baseUrl + params + access);
+    // apiInterface.search = function(params) {
+    //     return $http.get(baseUrl + params + access);
+    // };
+
+    return apiInterface;
+}]);
+
+api.factory('PxFactory', ['$http', function($http){
+    var apiInterface = {};
+
+    apiInterface.get = function () {
+        return $http.get('/api/500px');
     };
+
+    // apiInterface.search = function(params) {
+    //     return $http.get(baseUrl + params + access);
+    // };
 
     return apiInterface;
 }]);

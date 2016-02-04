@@ -23,30 +23,13 @@ app.use(bodyParser.json());
 
 
 // ========= Routing =========
-var favorites = require('./routers/favorites');
+var apis = require('./routers/apis');
+
 app.get('/', function(req,res){
     res.sendFile(__dirname + "/views/index.html");
 });
 
-app.use('/api/favorites', favorites);
-
-app.get('/api/helper', function(req,res){
-    var baseUrl, access;
-    if(req.query.api === "Dribbble"){
-        baseUrl = "https://api.dribbble.com/v1/";
-        access = "?access_token=" + process.env.DRIBBBLEKEY;
-        request(baseUrl + "shots" + access, function(err, reponse, body){
-            res.send(body);
-        });
-    }
-    if(req.query.api === "Behance"){
-        baseUrl = "http://behance.net/v2/";
-        access = "?api_key=" +  process.env.BEHANCEKEY;
-        request(baseUrl + "projects" + access, function(err, reponse, body){
-            res.send(body);
-        });
-    }
-});
+app.use('/api', apis);
 
 
 
