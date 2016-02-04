@@ -48,7 +48,6 @@ header {
     display: inline-block;
     margin: 0 0 1em;
     width: 100%;
-    display: inline-block;
     background-color: #fff;
     border-radius: 5px;
     overflow: hidden;
@@ -112,6 +111,33 @@ header {
     background-color: gray;
     background-image: url(/images/inspire-me-logo.svg);
 }
+
+.inspire-add {
+    /*background: url(/images/inspire-me-logo.svg);*/
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: block;
+    top: 10vh;
+    left: 0;
+    z-index: 99;
+    text-align: center;
+
+}
+
+@keyframes grow {
+    0% {opacity:0; height: 50vh;}
+    30% {opacity:1; height: 80vh;}
+    70% {opacity:1; height: 80vh;}
+    100% {opacity:0; height: 110vh;}
+}
+
+.inspire-add img {
+    animation: grow 2s forwards;
+
+}
+
+
 
 @media screen and (max-width: 900px) {
     body{

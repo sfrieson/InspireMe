@@ -1,27 +1,28 @@
 var ctrl = angular.module('MainControllers', []);
 
-ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactory', 'PxFactory', 'FavoritesFactory',
-    function ($scope, DribbbleFactory, BehanceFactory, PxFactory, FavoritesFactory) {
+ctrl.controller('ArtworkController',
+    ['$scope', '$timeout','DribbbleFactory', 'BehanceFactory', 'PxFactory', 'FavoritesFactory',
+    function ($scope, $timeout, DribbbleFactory, BehanceFactory, PxFactory, FavoritesFactory) {
     $scope.results = [];
     $scope.dribbble = true;
     $scope.behance = true;
     $scope.px = true;
+    $scope.inspireWin = false;
 
     var getDribbbles = function(page){
-        if(!fakeDribbble){
+        if(fakeDribbble){
             $scope.results = $scope.results.concat( dribbbleResults(fakeDribbble) );
         } else {
             DribbbleFactory.get(page).then(function(response){
                     console.log(response);
                     $scope.results = $scope.results.concat( dribbbleResults(response) );
-
             });
         }
 
     };
 
     var getBehance = function(page){
-        if(!fakeBehance){
+        if(fakeBehance){
             $scope.results = $scope.results.concat( behanceResults(fakeBehance) );
         } else {
             BehanceFactory.get(page).then(function(response){
@@ -32,7 +33,7 @@ ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactor
     };
 
     var get500px = function(page){
-        if(!fake500px){
+        if(fake500px){
             $scope.results = $scope.results.concat( pxResults(fake500px) );
         } else {
             PxFactory.get(page).then(function(response){
@@ -59,6 +60,8 @@ ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactor
         var index = $scope.results.map(function(result){return result.id;}).indexOf(id);
         console.log($scope.results[index]);
         FavoritesFactory.add($scope.results[index]).then(function(){});
+        $scope.inspireWin = true;
+        $timeout(function(){$scope.inspireWin = false;}, 2500);
     };
 
     var pageNumber = 1;
