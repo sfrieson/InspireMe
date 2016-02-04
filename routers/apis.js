@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
+var Inspiration = require('../models/inspiration');
 
 
-
-router.get('/', function (req, res) {
+router.get('/favorites', function (req, res) {
     Inspiration.find({}, function(err, dbIns){
         res.json({favorites: dbIns});
     });
 });
 
-router.post('/', function(req, res){
+router.post('/favorites', function(req, res){
     Inspiration.create(req.body.favorite, function(err, dbIns) {
         res.json(dbIns);
     });

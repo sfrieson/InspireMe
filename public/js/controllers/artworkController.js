@@ -1,7 +1,7 @@
 var ctrl = angular.module('MainControllers', []);
 
-ctrl.controller('ArtworkController', ['$scope','$http','DribbbleFactory', 'BehanceFactory', 'PxFactory',
-    function ($scope, $http, DribbbleFactory, BehanceFactory, PxFactory) {
+ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactory', 'PxFactory', 'FavoritesFactory',
+    function ($scope, DribbbleFactory, BehanceFactory, PxFactory, FavoritesFactory) {
     $scope.results = [];
     $scope.dribbble = true;
     $scope.behance = true;
@@ -54,6 +54,13 @@ ctrl.controller('ArtworkController', ['$scope','$http','DribbbleFactory', 'Behan
         // }
         return false;
     };
+
+    $scope.add = function(id) {
+        var index = $scope.results.map(function(result){return result.id;}).indexOf(id);
+        console.log($scope.results[index]);
+        FavoritesFactory.add($scope.results[index]).then(function(){});
+    };
+
     getDribbbles();
     getBehance();
     get500px();
