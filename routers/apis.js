@@ -23,7 +23,7 @@ router.get('/dribbble', function(req,res){
     var baseUrl, access;
     baseUrl = "https://api.dribbble.com/v1/";
     access = "&access_token=" + process.env.DRIBBBLEKEY;
-    request(baseUrl + "shots?sort=recent" + access, function(err, reponse, body){
+    request(baseUrl + "shots?sort=recent&page=" + req.query.page + access, function(err, reponse, body){
         res.send(body);
     });
 });
@@ -31,7 +31,8 @@ router.get('/dribbble', function(req,res){
 router.get('/behance', function(req,res){
     var baseUrl = "http://behance.net/v2/";
     access = "&api_key=" +  process.env.BEHANCEKEY;
-    request(baseUrl + "projects?time=today&sort=published_date" + access, function(err, reponse, body){
+    request(baseUrl + "projects?time=today&sort=published_date&page=" + req.query.page + access,
+     function(err, reponse, body){
         res.send(body);
     });
 });
@@ -39,7 +40,7 @@ router.get('/behance', function(req,res){
 router.get('/500px', function(req,res){
     var baseUrl = "https://api.500px.com/v1/photos";
     access = "&consumer_key=" +  process.env.PXKEY;
-    request(baseUrl + "?feature=popular&image_size=3" + access, function(err, reponse, body){
+    request(baseUrl + "?feature=popular&image_size=3&page=" + req.query.page + access, function(err, reponse, body){
         res.send(body);
     });
 });

@@ -7,11 +7,11 @@ ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactor
     $scope.behance = true;
     $scope.px = true;
 
-    var getDribbbles = function(){
-        if(fakeDribbble){
+    var getDribbbles = function(page){
+        if(!fakeDribbble){
             $scope.results = $scope.results.concat( dribbbleResults(fakeDribbble) );
         } else {
-            DribbbleFactory.get().then(function(response){
+            DribbbleFactory.get(page).then(function(response){
                     console.log(response);
                     $scope.results = $scope.results.concat( dribbbleResults(response) );
 
@@ -20,22 +20,22 @@ ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactor
 
     };
 
-    var getBehance = function(){
-        if(fakeBehance){
+    var getBehance = function(page){
+        if(!fakeBehance){
             $scope.results = $scope.results.concat( behanceResults(fakeBehance) );
         } else {
-            BehanceFactory.get().then(function(response){
+            BehanceFactory.get(page).then(function(response){
                 console.log(response);
                 $scope.results = $scope.results.concat( behanceResults(response) );
             });
         }
     };
 
-    var get500px = function(){
-        if(fake500px){
+    var get500px = function(page){
+        if(!fake500px){
             $scope.results = $scope.results.concat( pxResults(fake500px) );
         } else {
-            PxFactory.get().then(function(response){
+            PxFactory.get(page).then(function(response){
                 console.log(response);
                 $scope.results = $scope.results.concat( pxResults(response) );
             });
@@ -61,9 +61,17 @@ ctrl.controller('ArtworkController', ['$scope','DribbbleFactory', 'BehanceFactor
         FavoritesFactory.add($scope.results[index]).then(function(){});
     };
 
-    getDribbbles();
-    getBehance();
-    get500px();
+    var pageNumber = 1;
+    $scope.apiCalls = function() {
+        console.log(pageNumber);
+        getDribbbles(pageNumber);
+        getBehance(pageNumber);
+        get500px(pageNumber);
+        pageNumber++;
+    };
+
+    $scope.apiCalls();
+
 }]);
 
 function dribbbleResults(response){

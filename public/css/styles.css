@@ -2,6 +2,7 @@ body {
     background-color: lightgray;
     font-family: 'Raleway', sans-serif;
     margin: 1.25em 0;
+    position: relative;
 }
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
@@ -166,4 +167,18 @@ header {
         height: 1.25em;
         width: 1.25em;
     }
+}
+
+.button {
+    background-color: #FFEE11;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: 60vw;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    box-shadow: 0 5px #FFDD22;
+    cursor: pointer;
 }
