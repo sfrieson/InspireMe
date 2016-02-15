@@ -2,16 +2,19 @@
 <html lang="en" ng-app="InspireMe">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>inspire.me</title>
     <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-    <script src="js/services/apiServices.js" charset="utf-8"></script>
-    <script src="js/controllers/artworkController.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
-
+    <script src="/js/services/apiServices.js" charset="utf-8"></script>
+    <script src="/js/controllers/artworkController.js" charset="utf-8"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
 </head>
+
+
 <body ng-controller="ArtworkController">
+
+
     <header>
         <h1  id="logo">
             inspire.me
@@ -30,6 +33,7 @@
     </header>
 
 
+
     <section id="bricks">
         <div class="piece {{result.src}}" ng-repeat="result in results | filter: checkboxes | orderBy: 'time'">
             <a ng-href="{{result.url}}" target="_blank" >
@@ -38,14 +42,14 @@
             <div class="info">
                 <div class="box inspired" ng-click="add(result.id)"></div>
                 <h1>{{result.title}}</h1>
-                by <a ng-href="{{result.user_url}}" target="_blank" >{{result.user}}</a><br />
+                by <a ng-href="{{result.user_url}}" target="_blank">{{result.user}}</a><br />
                 {{result.desc}}
                 <div class="">{{result.time}}</div>
-
             </div>
         </div>
     </section>
     <div class="button" ng-click="apiCalls()">Load More</div>
+
 
     <!-- Animation overlay -->
     <div class="inspire-add" ng-show="inspireWin"><img src="/images/inspire-me-logo.svg" alt=""></div>
